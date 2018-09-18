@@ -6,6 +6,11 @@ namespace Tracer
 {
     public class TraceResult
     {
+        private ConcurrentDictionary<int, ThreadTracingResult> threadResults;
 
+        internal TraceResult()
+        {
+            threadResults = new ConcurrentDictionary<int, ThreadTracingResult>();
+        }
     }
 }
