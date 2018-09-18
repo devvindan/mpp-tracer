@@ -10,8 +10,8 @@ namespace Tracer
     public class ThreadTracingResult
     {
 
-        private Stack<MethodResult> threadMethods;
-        private List<MethodResult> tracedMethods;
+        private Stack<MethodTracingResult> threadMethods;
+        private List<MethodTracingResult> tracedMethods;
 
         // ID потока 
         public int ThreadID { get; set; }
@@ -24,6 +24,11 @@ namespace Tracer
 
                 
             }
+        }
+
+        public ThreadTracingResult(int id)
+        {
+            // TO be continued
         }
 
 
