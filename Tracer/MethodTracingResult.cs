@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Tracer
 {
+    [DataContract(Name = "method")]
     public class MethodTracingResult
     {
 
@@ -16,8 +17,12 @@ namespace Tracer
 
         // Поля с именем класса и метода
 
-        public string ClassName { get; set; }
+
+        [DataMember(Name = "name", Order = 0)]
         public string MethodName { get; set; }
+
+        [DataMember(Name = "class", Order = 1)]
+        public string ClassName { get; set; }
 
         // Свойства доступа к списку внутренних методов и времени выполнения.
 
@@ -29,22 +34,10 @@ namespace Tracer
             }
         }
 
-        public List<MethodTracingResult> InnerMethods
-        {
-            get
-            {
-                return new List<MethodTracingResult>(innerMethods);
-            }
-
-            private set
-            {
-                // для сериализации
-            }
-        }
-
 
         // Строковое представление времени
 
+        [DataMember(Name = "time", Order = 2)]
         public string ExecutionTimeString
         {
             get
@@ -58,6 +51,19 @@ namespace Tracer
             }
         }
 
+        [DataMember(Name = "methods", Order = 3)]
+        public List<MethodTracingResult> InnerMethods
+        {
+            get
+            {
+                return new List<MethodTracingResult>(innerMethods);
+            }
+
+            private set
+            {
+                // для сериализации
+            }
+        }
 
         public MethodTracingResult()
         {

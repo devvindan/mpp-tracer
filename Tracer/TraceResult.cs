@@ -4,13 +4,14 @@ using System.Collections.Concurrent;
 
 namespace Tracer
 {
+    [DataContract(Name = "result")]
     public class TraceResult
     {
         private ConcurrentDictionary<int, ThreadTracingResult> threadResults;
 
         // Свойство доступа к словарю потоков
-
-        public List<ThreadTracingResult> ThreadResults
+        [DataMember(Name = "threads")]
+        public List<ThreadTracingResult> ThreadTracingResults
         {
             get
             {
