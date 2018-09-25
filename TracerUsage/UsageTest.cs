@@ -10,77 +10,90 @@ namespace TracerUsage
 {
     public class UsageTest
     {
-
-        internal class ExampleMethods
+        // Класс с тестами для методов
+        public class ExampleTests
         {
             private static ITracer _tracer;
 
-            internal void SimpleMethod()
+            // Простой метод 
+            public void BasicMethod()
             {
                 _tracer.StartTrace();
                 Thread.Sleep(new Random().Next(100, 1000));
                 _tracer.StopTrace();
             }
 
-            internal void NotSoSimpleMethod()
+            public void AdvancedMethod()
             {
                 _tracer.StartTrace();
-                SimpleMethod();
-                SimpleMethod();
+                BasicMethod();
+                BasicMethod();
                 Thread.Sleep(new Random().Next(100, 1000));
                 _tracer.StopTrace();
             }
 
-            internal void AbsolutelyNotSimpleMethod()
+            public void LongMethod()
             {
                 _tracer.StartTrace();
-                SimpleMethod();
-                NotSoSimpleMethod();
-                NotSoSimpleMethod();
+                BasicMethod();
+                AdvancedMethod();
+                AdvancedMethod();
                 Thread.Sleep(new Random().Next(100, 1000));
                 _tracer.StopTrace();
             }
 
-            internal void MultiThreadedMethod()
+            // Проверка многопоточных методов
+            public void MultiThreadedMethod()
             {
                 _tracer.StartTrace();
                 var threads = new List<Thread>();
-                threads.Add(new Thread(SimpleMethod));
-                threads.Add(new Thread(NotSoSimpleMethod));
-                threads.Add(new Thread(AbsolutelyNotSimpleMethod));
+                threads.Add(new Thread(BasicMethod));
+                threads.Add(new Thread(AdvancedMethod));
+                threads.Add(new Thread(LongMethod));
+
+                // запуск потоков
                 foreach (Thread thread in threads)
                 {
                     thread.Start();
                 }
+
                 foreach (Thread thread in threads)
                 {
                     thread.Join();
                 }
+
                 Thread.Sleep(new Random().Next(100, 1000));
                 _tracer.StopTrace();
             }
 
-            internal ExampleMethods(ITracer tracer)
+            public ExampleTests(ITracer tracer)
             {
                 _tracer = tracer;
             }
         }
 
-        private static Tracer.Tracer tracer;
+        private static Tracer.Tracer exampleTracer;
 
         static void Main(string[] args)
         {
-            tracer = new Tracer.Tracer();
-            new ExampleMethods(tracer).MultiThreadedMethod();
+
+            Console.WriteLine("Start testing Tracer Usage:");
+
+            exampleTracer = new Tracer.Tracer();
+            new ExampleTests(exampleTracer).MultiThreadedMethod();
 
             IWriter writer;
 
+            // Вывод в консоль, сериализация в JSON
             writer = new ConsoleWriter();
-            writer.WriteResult(tracer.GetTraceResult(), new JsonSerializer());
+            writer.WriteResult(exampleTracer.GetTraceResult(), new JsonSerializer());
 
+            // XML-сериализация
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             writer = new FileWriter(desktopPath + "\\xmlSerialized.xml");
-            writer.WriteResult(tracer.GetTraceResult(), new XmlSerializer());
+            writer.WriteResult(exampleTracer.GetTraceResult(), new XmlSerializer());
+
+            Console.WriteLine("Finished testing Tracer Usage.")
 
             Console.ReadKey();
         }
