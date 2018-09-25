@@ -93,7 +93,7 @@ namespace TracerUsage
             writer = new FileWriter(desktopPath + "\\xmlSerialized.xml");
             writer.WriteResult(exampleTracer.GetTraceResult(), new XmlSerializer());
 
-            Console.WriteLine("Finished testing Tracer Usage.")
+            Console.WriteLine("Finished testing Tracer Usage.");
 
             Console.ReadKey();
         }
