@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A13DF2B6-EBAE-4AF2-B05C-901C46561B55}</ProjectGuid>
+    <ProjectGuid>{16CF1973-7EBF-4E07-85EE-52BE80097D91}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Tracer</RootNamespace>
-    <AssemblyName>Tracer</AssemblyName>
+    <RootNamespace>TracerUsage</RootNamespace>
+    <AssemblyName>TracerUsage</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -35,23 +35,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleWriter.cs" />
-    <Compile Include="FileWriter.cs" />
-    <Compile Include="ISerializer.cs" />
-    <Compile Include="ITracer.cs" />
-    <Compile Include="IWriter.cs" />
-    <Compile Include="JsonSerializer.cs" />
-    <Compile Include="MethodTracingResult.cs" />
-    <Compile Include="ThreadTracingResult.cs" />
-    <Compile Include="Tracer.cs" />
-    <Compile Include="TraceResult.cs" />
-    <Compile Include="XmlSerializer.cs" />
+    <Compile Include="UsageTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Serialization" />
+    <ProjectReference Include="..\Tracer\Tracer.csproj">
+      <Project>{a13df2b6-ebae-4af2-b05c-901c46561b55}</Project>
+      <Name>Tracer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

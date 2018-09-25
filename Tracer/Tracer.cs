@@ -3,27 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using System.Reflection;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Tracer
 {
-    class Tracer : ITracer
+    public class Tracer : ITracer
     {
 
         protected TraceResult traceResult;
 
-        // вызывается в начале замеряемого метода
+        
         public void StartTrace()
         {
-            
+            MethodBase methodBase = new StackTrace().GetFrame(1).GetMethod();
+            MethodTracingResult methodResult = new MethodTracingResult
+            {
+                ClassName = methodBase.ReflectedType.Name,
+                MethodName = methodBase.Name
+            };
+            ThreadTracingResult curThreadResult = traceResult.AddThreadResult(Thread.CurrentThread.ManagedThreadId);
+            curThreadResult.StartTracingMethod(methodResult);
         }
-    ​
-        // вызывается в конце замеряемого метода
+        
+        
         public void StopTrace()
         {
 
         }
-    ​
-        // получить результаты измерений
+       
         public TraceResult GetTraceResult()
         {
             return traceResult;

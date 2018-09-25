@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracer", "Tracer\Tracer.csproj", "{A13DF2B6-EBAE-4AF2-B05C-901C46561B55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TracerUsage", "TracerUsage\TracerUsage.csproj", "{16CF1973-7EBF-4E07-85EE-52BE80097D91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A13DF2B6-EBAE-4AF2-B05C-901C46561B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A13DF2B6-EBAE-4AF2-B05C-901C46561B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A13DF2B6-EBAE-4AF2-B05C-901C46561B55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16CF1973-7EBF-4E07-85EE-52BE80097D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16CF1973-7EBF-4E07-85EE-52BE80097D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16CF1973-7EBF-4E07-85EE-52BE80097D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16CF1973-7EBF-4E07-85EE-52BE80097D91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,7 +10,7 @@ using System.Runtime.Serialization.Json;
 namespace Tracer
 {
     // Сериализация в JSON 
-    class JsonSerializer : ISerializer
+    public class JsonSerializer : ISerializer
     {
 
         private DataContractJsonSerializer serializer;

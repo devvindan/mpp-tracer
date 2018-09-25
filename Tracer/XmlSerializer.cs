@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 
 namespace Tracer
 {
-    class XmlSerializer : ISerializer
+    public class XmlSerializer : ISerializer
     {
         // Настройки 
         private XmlWriterSettings settings;
